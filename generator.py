@@ -11,16 +11,17 @@ def load_templates(templates_file_path):
     templates_by_index = {}
     index = 0
     with open(templates_file_path, "r") as csvfile:
+        reader = csv.reader(csvfile, delimiter=',')
+        first_line = next(reader)
+        nb_variables = len(first_line) - 2
+    with open(templates_file_path, "r") as csvfile:
         reader = csv.DictReader(csvfile, delimiter=',')
         for row in reader:
             variables_by_index[index] = []
             templates_by_index[index] = {}
-            if row["var A"] != "":
-                variables_by_index[index].append(row["var A"])
-            if row["var B"] != "":
-                variables_by_index[index].append(row["var B"])
-            if row["var C"] != "":
-                variables_by_index[index].append(row["var C"])
+            for i in range(0, nb_variables):
+                if row["var "+str(chr(65+i))] != "":
+                    variables_by_index[index].append(row["var "+str(chr(65+i))])
             templates_by_index[index]["sentence"] = row["sentence"]
             templates_by_index[index]["query"] = row["query"]
             index += 1
