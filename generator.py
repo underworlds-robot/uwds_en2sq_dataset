@@ -44,15 +44,17 @@ def load_individuals(templates_file_path):
 
 def generate_data_pairs(variables, templates, individuals, nb_examples_per_template=600):
     pairs = []
-    is_unique = {}
+    already_generated = {}
     for i in range(0,len(templates)):
         print ("Generation of the "+str(i)+"th template...")
         for j in range(0, nb_examples_per_template):
             variables_list = variables[i]
             sentence = templates[i]["sentence"]
             query = templates[i]["query"]
-            # Check if already generated ?
-            pairs.append(generate_random_pair(variables_list, sentence, query, individuals))
+            sentence, query = generate_random_pair(variables_list, sentence, query, individuals)
+            if sentence not in already_generated:
+                pairs.append((sentence, query))
+            already_generated[sentence] = True
     return pairs
 
 def generate_random_pair(variables, sentence, query, individuals):
@@ -81,6 +83,7 @@ def main(templates_file_path="templates.csv", individuals_file_path="individuals
     individuals = load_individuals(individuals_file_path)
     pairs = generate_data_pairs(variables, templates, individuals, nb_examples_per_template)
     save(pairs, output_en_file, output_sq_file)
+    print (str(len(pairs))+" data pairs generated from "+str(len(templates))+" templates ! Enjoy !")
     print ("Bye bye !")
 
 if __name__ == '__main__':

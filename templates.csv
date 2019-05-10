@@ -1,10 +1,10 @@
 var A,var B,var C,var D,var E,var F,sentence,query
-Object,,,,,,give me the <A>,SELECT ?a WHERE { ?a hasName regex( <A> ) ?a isGraspable true . ?a isReachableBy RECEIVER }
+Object,,,,,,give me the <A>,SELECT ?a WHERE { ?a hasName regex( <A> ) . ?a isGraspable true . ?a isReachableBy RECEIVER }
 Object,,,,,,that <A>,SELECT ?a WHERE { ?a hasName regex( <A> ) . SENDER isPointingAt ?a }
-Object,,,,,,grab the <A>,SELECT ?a WHERE { ?a hasName regex( <A> ) ?a isGraspable true . ?a isReachable RECEIVER . ?a isVisibleBy RECEIVER }
-Object,,,,,,hold me the <A>,SELECT ?a WHERE { ?a hasName regex( <A> ) ?a isGraspable true . ?a isHeldBy SENDER }
-Object,,,,,,carry <A>,SELECT ?a WHERE { ?a hasName regex( <A> ) ?a isGraspable true }
-Color,Object,,,,,what are the <A> <B>,SELECT ?a WHERE { ?a hasName regex( <A> ) ?a isGraspable true . ?a isHeldBy SENDER . ?a isHeavy true }
-Color,Object,,,,,give me the <A> <B>,SELECT ?a WHERE { ?a hasName regex( <A> ) ?a isGraspable true . ?a isHeldBy SENDER . ?a isHeavy true }
-Color,Object,,,,,hold me the <A> <B>,SELECT ?a WHERE { ?a hasName regex( <A> ) ?a isGraspable true . ?a isHeldBy SENDER . ?a isHeavy true }
-Color,Object,,,,,carry the <A> <B>,SELECT ?a WHERE { ?a hasName regex( <A> ) ?a isGraspable true . ?a isHeldBy SENDER . ?a isHeavy true }
+Object,,,,,,grab the <A>,SELECT ?a WHERE { ?a hasName regex( <A> ) . ?a isGraspable true . ?a isReachable RECEIVER . ?a isVisibleBy RECEIVER }
+Object,,,,,,hold me the <A>,SELECT ?a WHERE { ?a hasName regex( <A> ) . ?a isGraspable true . ?a isHeldBy SENDER }
+Object,,,,,,carry the <A>,SELECT ?a WHERE { ?a hasName regex( <A> ) . ?a isGraspable true . ?a isLiftable true }
+Color,Object,,,,,what are the <A> objects,SELECT ?a WHERE { ?a isA Object . ?a hasColor regex(<A>) }
+Color,Object,,,,,give me the <A> <B>,SELECT ?a WHERE { ?a hasName regex( <B> ) . ?a hasColor regex(<A>) . ?a isGraspable true . ?a isReachableBy RECEIVER }
+Color,Object,,,,,hold me the <A> <B>,SELECT ?a WHERE { ?a hasName regex( <B> ) . ?a hasColor regex(<A>) . ?a isGraspable true . ?a isHeldBy SENDER . ?a isHeavy true }
+Color,Object,,,,,carry the <A> <B>,SELECT ?a WHERE { ?a hasName regex( <B> ) . ?a hasColor regex(<A>) . ?a isGraspable true . ?a isHeldBy SENDER . ?a isLiftable true }
