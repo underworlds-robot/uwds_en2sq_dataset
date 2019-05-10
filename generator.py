@@ -63,7 +63,7 @@ def generate_random_pair(variables, sentence, query, individuals):
     if len(variables) > 0:
         for i in range(0, len(variables)): 
             index = pick_index(individuals[variables[i]])
-            query.replace(".", ",")
+            query = query.replace(".", ",")
             query = query.replace("<"+str(chr(65+i))+">", individuals[variables[i]][index])
             sentence = sentence.replace("<"+str(chr(65+i))+">", individuals[variables[i]][index])
     return sentence, query
