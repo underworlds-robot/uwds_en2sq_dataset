@@ -17,7 +17,7 @@ python generator.py
 ### Create your own dataset
 
 To create your own dataset you will need to create two CSV files :
-* A template file (see [template.csv](template.csv) as example)
+* A template file (see [templates.csv](templates.csv) as example)
 * A batch of individuals to generate random data pairs (see [individuals.csv](individuals.csv) as example)
 
 ##### Templates
