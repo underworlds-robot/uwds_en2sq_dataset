@@ -10,26 +10,31 @@ This repository include a simple dataset generator to be used by [OpenNMT](http:
 git clone https://github.com/underworlds-robot/uwds_en2sq_dataset.git
 cd uwds_en2sq_dataset
 pip install -r --user requirements.txt
-```
-
-### Generate the dataset
-
-In order to generate the Underworlds dataset, open a shell and type :
-```shell
 cd uwds_en2sq_dataset
-python generator.py --templates <your_templates> --individuals <your_individuals> --examples\_per\_template <nb_ex_per_template>
+python generator.py
 ```
 
 ### Create your own dataset
 
-#### Templates
+To create your own dataset you will need to create two CSV files :
+* A template file (see [template.csv](template.csv) as example)
+* A batch of individuals to generate random data pairs (see [individuals.csv](individuals.csv) as example)
 
-The aim of this file is to describe data pairs as templates of sentence and query where the `<A>`, `<B>`, `<C>` variables are then replaced by the given individuals.
-To know which individuals to choose, the type is described in the 3 first lines !
+##### Templates
 
-#### Individuals
+The aim of this file is to describe data pairs as templates of sentence and query where the `<A>`, `<B>`, `<C>`, `<D>`, `<E>`, `<F>` variables are then replaced by the given individuals.
+To know which individuals to choose, the type is described in the 3 first lines.
+
+##### Individuals
 
 This file describe the possible individuals given the individuals type.
+
+#### Generate your own dataset
+
+```shell
+cd uwds_en2sq_dataset
+python generator.py --templates <your_templates> --individuals <your_individuals> --examples_per_template <nb_ex_per_template>
+```
 
 ### References
 
