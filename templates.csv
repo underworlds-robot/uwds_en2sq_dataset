@@ -1,0 +1,11 @@
+var A,var B,var C,sentence,query
+uwds:Object,,,what are <A>,SELECT ?a WHERE { ?a hasName regex( <A> ) }
+uwds:Object,,,give me <A>,SELECT ?a WHERE { ?a hasName regex( <A> ) ?a isGraspable true . ?a isReachableBy RECEIVER }
+uwds:Object,,,that <A>,SELECT ?a WHERE { ?a hasName regex( <A> ) . SENDER isPointingAt ?a }
+uwds:Object,,,grab the <A>,SELECT ?a WHERE { ?a hasName regex( <A> ) ?a isGraspable true . ?a isReachable true . ?a isVisibleBy RECEIVER }
+uwds:Object,,,hold me <A>,SELECT ?a WHERE { ?a hasName regex( <A> ) ?a isGraspable true . ?a isHeldBy SENDER }
+uwds:Object,,,help me to carry <A>,SELECT ?a WHERE { ?a hasName regex( <A> ) ?a isGraspable true . ?a isHeldBy SENDER . ?a isHeavy true }
+uwds:Color,uwds:Object,,what are the <A> <B>,SELECT ?a WHERE { ?a hasName regex( <A> ) ?a isGraspable true . ?a isHeldBy SENDER . ?a isHeavy true }
+uwds:Color,uwds:Object,,give me the <A> <B>,SELECT ?a WHERE { ?a hasName regex( <A> ) ?a isGraspable true . ?a isHeldBy SENDER . ?a isHeavy true }
+uwds:Color,uwds:Object,,hold me the <A> <B>,SELECT ?a WHERE { ?a hasName regex( <A> ) ?a isGraspable true . ?a isHeldBy SENDER . ?a isHeavy true }
+uwds:Color,uwds:Object,,help me to carry <A> <B>,SELECT ?a WHERE { ?a hasName regex( <A> ) ?a isGraspable true . ?a isHeldBy SENDER . ?a isHeavy true }
