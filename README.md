@@ -7,11 +7,17 @@ This repository include a simple dataset generator to be used by [OpenNMT](http:
 ### Installation instructions
 
 ```shell
+cd ~
+virtualenv opennmt
+```
+
+```shell
 git clone https://github.com/underworlds-robot/uwds_en2sq_dataset.git
 cd uwds_en2sq_dataset
-pip install -r --user requirements.txt
-cd uwds_en2sq_dataset
+source opennmt/bin/activate
+pip install -Iv -r requirements.txt
 python generator.py
+./build_vocab.sh
 ```
 
 ### Create your own dataset
