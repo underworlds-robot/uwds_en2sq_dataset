@@ -6,18 +6,26 @@ This repository include a simple dataset generator to be used by [OpenNMT](http:
 
 ### Installation instructions
 
+First, create a virtualenv for this application :
 ```shell
 cd ~
 virtualenv opennmt
 ```
 
+Then download the dependencies :
 ```shell
 git clone https://github.com/underworlds-robot/uwds_en2sq_dataset.git
 cd uwds_en2sq_dataset
 source opennmt/bin/activate
 pip install -Iv -r requirements.txt
+```
+
+To build the dataset and train your network do :
+```shell
 python generator.py
 ./build_vocab.sh
+./train_and_eval.sh
+./infer.sh "<the_sentence_you_want_to_infer>"
 ```
 
 ### Create your own dataset
