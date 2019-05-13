@@ -71,29 +71,41 @@ def generate_random_pair(variables, sentence, query, individuals):
 def pick_index(sequence):
     return int((np.random.random_sample() * len(sequence)) % len(sequence))
 
-def save(data_pairs, source_file_path, target_file_path):
+def save(data_pairs, source_file_path, target_file_path, source_val_file_path, target_val_file_path):
     with open(source_file_path, 'w') as src_file:
         with open(target_file_path, 'w') as tgt_file:
-            for data_pair in data_pairs:
-                sentence, query = data_pair
-                src_file.write(sentence + "\r\n")
-                tgt_file.write(query + "\r\n")
+            with open(source_val_file_path, 'w') as src_val_file:
+                with open(target_val_file_path, 'w') as tgt_val_file:
+                    nb_train = 0
+                    nb_val = 0
+                    for data_pair in data_pairs:
+                        sentence, query = data_pair
+                        if np.random.random_sample() > 0.1:
+                            src_file.write(sentence + "\r\n")
+                            tgt_file.write(query + "\r\n")
+                            nb_train += 1
+                        else:
+                            src_val_file.write(sentence + "\r\n")
+                            tgt_val_file.write(query + "\r\n")
+                            nb_val += 1
+                    print ("Saved "+str(nb_train)+" pairs in training dataset : "+source_file_path+" "+target_file_path)
+                    print ("Saved "+str(nb_val)+" pairs in validation dataset : "+source_val_file_path+" "+target_val_file_path)
 
-def main(templates_file_path="templates.csv", individuals_file_path="individuals.csv", nb_examples_per_template=600, output_en_file="src-train.txt", output_sq_file="tgt-train.txt"):
+def main(templates_file_path="templates.csv", individuals_file_path="individuals.csv", max_examples_per_template=600, output_en_file="src-train.txt", output_sq_file="tgt-train.txt", src_val_file="src-val.txt", tgt_val_file="tgt-val.txt"):
     variables, templates = load_templates(templates_file_path)
     individuals = load_individuals(individuals_file_path)
-    pairs = generate_data_pairs(variables, templates, individuals, nb_examples_per_template)
-    save(pairs, output_en_file, output_sq_file)
+    pairs = generate_data_pairs(variables, templates, individuals, max_examples_per_template)
     print (str(len(pairs))+" data pairs generated from "+str(len(templates))+" templates ! Enjoy !")
+    save(pairs, output_en_file, output_sq_file, src_val_file, tgt_val_file)
     print ("Bye bye !")
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='The dataset generator.')
     parser.add_argument("--templates", type=str, default="templates.csv", help='The templates file to use')
     parser.add_argument("--individuals", type=str, default="individuals.csv", help='The individuals to randomly pick')
-    parser.add_argument("--examples_per_template", type=int, default=600, help="The number of examples to generate per template")
+    parser.add_argument("--examples_per_template", type=int, default=600, help="The max number of examples to generate per template")
 
     args = parser.parse_args()
     print ("Start generating dataset...")
-    main(templates_file_path=args.templates, individuals_file_path=args.individuals, nb_examples_per_template=args.examples_per_template)
+    main(templates_file_path=args.templates, individuals_file_path=args.individuals, max_examples_per_template=args.examples_per_template)
 

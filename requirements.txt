@@ -1,0 +1,5 @@
+numpy
+argparse
+csv
+tensorflow
+OpenNMT-tf

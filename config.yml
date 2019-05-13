@@ -1,0 +1,31 @@
+model_dir: run/
+
+data:
+  train_features_file: src-train.txt
+  train_labels_file: tgt-train.txt
+  eval_features_file: src-val.txt
+  eval_labels_file: tgt-val.txt
+  source_words_vocabulary: src-vocab.txt
+  target_words_vocabulary: tgt-vocab.txt
+
+train:
+  # (optional) How many checkpoints to keep on disk.
+  keep_checkpoint_max: 5
+
+source_embedding:
+  path: res/data/glove/glove.6B.300d.txt
+  with_header: True
+  case_insensitive: True
+  trainable: False
+
+source_tokenization:
+  mode: aggressive
+  joiner_annotate: true
+  segment_numbers: true
+  segment_alphabet_change: true
+
+target_tokenization:
+  mode: aggressive
+  joiner_annotate: true
+  segment_numbers: true
+  segment_alphabet_change: true
