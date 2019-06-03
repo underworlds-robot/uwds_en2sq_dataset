@@ -37,7 +37,7 @@ To create your own dataset you will need to create two CSV files :
 ##### Templates
 
 The aim of this file is to describe data pairs as templates of sentence and query where the `<A>`, `<B>`, `<C>`, `<D>`, `<E>`, `<F>` variables are then replaced by the given individuals.
-To know which individuals to choose, the type is described in the 3 first lines.
+To know which individuals to choose, the type is described in the first lines.
 
 ##### Individuals
 
@@ -47,7 +47,7 @@ This file describe the possible individuals given the individuals type.
 
 ```shell
 cd uwds_en2sq_dataset
-python generator.py --templates <your_templates> --individuals <your_individuals> --examples_per_template <nb_ex_per_template>
+python generator.py --templates <your_templates> --individuals <your_individuals>
 ```
 
 ### References

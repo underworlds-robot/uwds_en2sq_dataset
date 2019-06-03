@@ -5,7 +5,5 @@ src-train.txt
 tgt-train.txt
 src-val.txt
 tgt-val.txt
-src-vocab.txt
-tgt-vocab.txt
 src-test.txt
 tgt-test.txt

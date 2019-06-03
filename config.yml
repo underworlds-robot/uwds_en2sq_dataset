@@ -12,9 +12,17 @@ train:
   # (optional) How many checkpoints to keep on disk.
   keep_checkpoint_max: 5
 
+params:
+  beam_width: 10
+  sampling_topk: 1
+  sampling_temperature: 1
+
+infer:
+  n_best: 1
+
 source_embedding:
   path: res/data/glove/glove.6B.300d.txt
-  with_header: True
+  with_header: False
   case_insensitive: True
   trainable: False
 
